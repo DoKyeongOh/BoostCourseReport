@@ -14,7 +14,7 @@ public class DataBaseUtil {
 	}
 
 	private String getConnection(String url, String id, String pswd) {
-		url = url + "&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+		url = url + "?useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 		try {
 			Class.forName(DataBaseClassName);
 		} catch (ClassNotFoundException e) {
@@ -33,7 +33,7 @@ public class DataBaseUtil {
 	}
 
 	public boolean Connect(String dbAddr, String dbName, String userId, String userPw) {
-		String url = "jdbc:mysql://" + dbAddr + "/" + dbName + "?useSSL=false";
+		String url = "jdbc:mysql://" + dbAddr + "/" + dbName;
 		if (dbName == "") {
 			if (Connect(dbAddr, userId, userPw)) return true;
 			else return false;
