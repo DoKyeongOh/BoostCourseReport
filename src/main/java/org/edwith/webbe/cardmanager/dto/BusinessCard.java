@@ -6,23 +6,22 @@ public class BusinessCard {
     private String name;
     private String phone;
     private String companyName;
-    private Date createDate;
+    private String createDate;
 
     public BusinessCard(String name, String phone, String companyName) {
         this.name = name;
         this.phone = phone;
         this.companyName = companyName;
-        this.createDate = new Date();
+        this.createDate = new Date().toString();
     } 
 
-    public BusinessCard(String name, String phone, String companyName, String date) {
-        this.name = name;
-        this.phone = phone;
-        this.companyName = companyName;
-        this.createDate = java.sql.Date.valueOf(date);
-    }
     
-    public String getName() {
+    public BusinessCard() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public String getName() {
         return name;
     }
 
@@ -46,11 +45,11 @@ public class BusinessCard {
         this.companyName = companyName;
     }
 
-    public Date getCreateDate() {
+    public String getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(String createDate) {
         this.createDate = createDate;
     }
 
