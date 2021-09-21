@@ -65,6 +65,9 @@ public class CardManagerUI {
     }
 
     public void printBusinessCards(List<BusinessCard> businessCardList){
+    	if (businessCardList.isEmpty()) {
+    		System.out.println("  검색 결과가 없습니다.");
+    	}
         for(BusinessCard businessCard: businessCardList){
             System.out.println(businessCard);
             System.out.println("---------------------------------------------------------------");
