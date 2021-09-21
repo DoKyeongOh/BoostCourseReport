@@ -6,6 +6,7 @@ import org.edwith.webbe.cardmanager.dto.BusinessCard;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class BusinessCardManagerDao {
@@ -27,34 +28,53 @@ public class BusinessCardManagerDao {
     	if (!mysqlUtil.Connect(addr, dbName, userId, userPw)) return null;
     	
     	List<BusinessCard> cardList = new ArrayList<BusinessCard>();
-    	String name = "";
-    	String phone = "";
-    	String companyName = "";
-    	String date = "";
+    	BusinessCard bc = null;
     	
     	String sql = "SELECT * FROM businesscard WHERE name LIKE ?";
     	PreparedStatement ps = null;
     	ResultSet rs = null;
+    	
     	try {
         	ps = mysqlUtil.getStatement(ps, sql);
     		ps.setString(1, "%"+keyword+"%");
     		rs = ps.executeQuery();
     		while (rs.next()) {
-    			name = rs.getString("name");
-    			phone = rs.getString("phone");
-    			companyName = rs.getString("companyName");
+    			bc = new BusinessCard();
+    			bc.setName(rs.getString("name"));
+    			bc.setPhone(rs.getString("phone"));
+    			bc.setCompanyName(rs.getString("companyName"));
+    			bc.setCreateDate(rs.getString("createDate"));
+    			cardList.add(bc);
     		}
-    		
+    		 
+    		mysqlUtil.close();
+    		return cardList;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
-    	
-    	return null;
     }
 
     public BusinessCard addBusinessCard(BusinessCard businessCard){
 	// 구현하세요.
-    	return null;
+		DataBaseUtil mysqlUtil = new DataBaseUtil();
+    	if (!mysqlUtil.Connect(addr, dbName, userId, userPw)) return null;
+
+    	String sql = "INSERT INTO businesscard VALUES (?, ?, ?, ?)";
+    	PreparedStatement ps = null;
+    	
+    	try {
+        	ps = mysqlUtil.getStatement(ps, sql);
+    		ps.setString(1, businessCard.getName());
+    		ps.setString(2, businessCard.getPhone());
+    		ps.setString(3, businessCard.getCompanyName());
+    		ps.setString(4, businessCard.getCreateDate());
+    		ps.executeUpdate();
+    		mysqlUtil.close();
+    		return businessCard;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
     }
 }
