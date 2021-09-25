@@ -14,6 +14,7 @@ public class DataBaseUtil {
 	}
 
 	private String getConnection(String url, String id, String pswd) {
+		// MySQL 8.0 이상부터 타임존을 지정해주어야 접속할 수 있게 변경됨.
 		url = url + "?useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 		try {
 			Class.forName(DataBaseClassName);
