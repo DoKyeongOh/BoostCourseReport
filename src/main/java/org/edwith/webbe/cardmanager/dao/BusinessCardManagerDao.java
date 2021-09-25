@@ -15,11 +15,25 @@ public class BusinessCardManagerDao {
 	private String userId = "";
 	private String userPw = "";
 	
+	private Integer LIMIT_NAME_LANGTH = 10;
+	private Integer LIMIT_PHONE_LANGTH = 30;
+	private Integer LIMIT_COMPANY_LANGTH = 20;
+	private Integer LIMIT_CREATEDATE_LANGTH = 50;
+	
 	public BusinessCardManagerDao () {
 		addr = "127.0.0.1:3306";
 		dbName = "odk";
 		userId = "root";
 		userPw = "1234";
+	}
+	
+	private boolean checkCardInputFormat(BusinessCard bccard) {
+		if (bccard.getName().length() >= LIMIT_NAME_LANGTH) return false;
+		if (bccard.getPhone().length() >= LIMIT_PHONE_LANGTH) return false;
+		if (bccard.getCompanyName().length() >= LIMIT_COMPANY_LANGTH) return false;
+		if (bccard.getCreateDate().length() >= LIMIT_CREATEDATE_LANGTH) return false;
+		
+		return true;
 	}
 	
     public List<BusinessCard> searchBusinessCard(String keyword){
@@ -57,6 +71,8 @@ public class BusinessCardManagerDao {
 
     public BusinessCard addBusinessCard(BusinessCard businessCard){
 	// 구현하세요.
+    	if (!checkCardInputFormat(businessCard)) return null;
+    	
 		DataBaseUtil mysqlUtil = new DataBaseUtil();
     	if (!mysqlUtil.Connect(addr, dbName, userId, userPw)) return null;
 
