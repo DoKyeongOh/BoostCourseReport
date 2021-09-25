@@ -15,11 +15,6 @@ public class BusinessCardManagerDao {
 	private String userId = "";
 	private String userPw = "";
 	
-	private Integer LIMIT_NAME_LANGTH = 10;
-	private Integer LIMIT_PHONE_LANGTH = 30;
-	private Integer LIMIT_COMPANY_LANGTH = 20;
-	private Integer LIMIT_CREATEDATE_LANGTH = 50;
-	
 	public BusinessCardManagerDao () {
 		addr = "127.0.0.1:3306";
 		dbName = "odk";
@@ -28,10 +23,10 @@ public class BusinessCardManagerDao {
 	}
 	
 	private boolean checkCardInputFormat(BusinessCard bccard) {
-		if (bccard.getName().length() >= LIMIT_NAME_LANGTH) return false;
-		if (bccard.getPhone().length() >= LIMIT_PHONE_LANGTH) return false;
-		if (bccard.getCompanyName().length() >= LIMIT_COMPANY_LANGTH) return false;
-		if (bccard.getCreateDate().length() >= LIMIT_CREATEDATE_LANGTH) return false;
+		if (bccard.getName().length() >= bccard.LIMIT_NAME_LANGTH) return false;
+		if (bccard.getPhone().length() >= bccard.LIMIT_PHONE_LANGTH) return false;
+		if (bccard.getCompanyName().length() >= bccard.LIMIT_COMPANY_LANGTH) return false;
+		if (bccard.getCreateDate().length() >= bccard.LIMIT_CREATEDATE_LANGTH) return false;
 		
 		return true;
 	}
