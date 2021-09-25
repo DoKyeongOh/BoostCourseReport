@@ -39,11 +39,11 @@ public class CardManagerUI {
 
     public BusinessCard inputBusinessCard(){
         try {
-            System.out.print("이름을 입력하세요 : ");
+            System.out.print("이름을 입력하세요(10글자 이내) : ");
             String name = in.readLine();
-            System.out.print("전화번호를 입력하세요. : ");
+            System.out.print("전화번호를 입력하세요(30글자 이내) : ");
             String phone = in.readLine();
-            System.out.print("회사 이름을 입력하세요. : ");
+            System.out.print("회사 이름을 입력하세요(20글자 이내) : ");
             String companyName = in.readLine();
             BusinessCard businessCard = new BusinessCard(name, phone, companyName);
             return businessCard;
@@ -80,5 +80,9 @@ public class CardManagerUI {
 
     public void printErrorMessage(){
         System.out.println("잘못된 입력입니다.");
+    }
+
+    public void printBadInputFormet(){
+        System.out.println("입력 형식이 잘못되었습니다. \n글자 수에 유의하여 재시도해주세요.");
     }
 }
