@@ -8,6 +8,11 @@ public class BusinessCard {
     private String companyName;
     private String createDate;
 
+    public Integer LIMIT_NAME_LANGTH = 10;
+    public Integer LIMIT_PHONE_LANGTH = 30;
+    public Integer LIMIT_COMPANY_LANGTH = 20;
+    public Integer LIMIT_CREATEDATE_LANGTH = 50;
+
     public BusinessCard(String name, String phone, String companyName) {
         this.name = name;
         this.phone = phone;
