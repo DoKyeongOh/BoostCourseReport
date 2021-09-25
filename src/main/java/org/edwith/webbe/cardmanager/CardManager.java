@@ -20,7 +20,9 @@ public class CardManager {
             switch(menuNumber){
                 case 1 :
                     BusinessCard businessCard = cardManagerUI.inputBusinessCard();
-                    businessCardManagerDao.addBusinessCard(businessCard);
+                    if (businessCardManagerDao.addBusinessCard(businessCard) == null) {
+                    	cardManagerUI.printBadInputFormet();
+                    }
                     break;
                 case 2 :
                     String searchKeyword = cardManagerUI.getSearchKeyword();
